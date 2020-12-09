@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1">
+    <xs:element name="conlang">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="headingWrapper">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="langName" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" name="langCreator">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="source" type="xs:string"/>
+                                            <xs:attribute name="type">
+                                                <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="individual"/>
+                                                  <xs:enumeration value="group"/>
+                                                  <xs:enumeration value="other"/>
+                                                  </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="langMaintainedBy">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="source" type="xs:string"/>
+                                            <xs:attribute name="type">
+                                                <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="individual"/>
+                                                  <xs:enumeration value="group"/>
+                                                  <xs:enumeration value="other"/>
+                                                  </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="langDate">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:gYear">
+                                            <xs:attribute name="type" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="langGroup" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="langPurpose" type="xs:string"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="groupType" use="required">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="art"/>
+                                                <xs:enumeration value="engineered"/>
+                                                <xs:enumeration value="auxiliary"/>
+                                                <xs:enumeration value="other"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="langOrthography" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="scriptID" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="langAbstractWrapper" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="langAbstract">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="source" type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="langUsage" type="xs:string"/>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            name="langFeature" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="phonologyWrapper">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="consonantInv">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="consonant">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="placement">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="bilabial"/>
+                                                  <xs:enumeration value="labio-dental"/>
+                                                  <xs:enumeration value="linguo-labial"/>
+                                                  <xs:enumeration value="dental"/>
+                                                  <xs:enumeration value="alveolar"/>
+                                                  <xs:enumeration value="post-alveolar"/>
+                                                  <xs:enumeration value="retroflex"/>
+                                                  <xs:enumeration value="palatal"/>
+                                                  <xs:enumeration value="velar"/>
+                                                  <xs:enumeration value="uvular"/>
+                                                  <xs:enumeration value="pharyngeal"/>
+                                                  <xs:enumeration value="glottal"/>
+                                                  <xs:enumeration value="labio-velar"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="articulation">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="nasal"/>
+                                                  <xs:enumeration value="plosive"/>
+                                                  <xs:enumeration value="sibilant fricative"/>
+                                                  <xs:enumeration value="non-sibilant fricative"/>
+                                                  <xs:enumeration value="approximant"/>
+                                                  <xs:enumeration value="flap"/>
+                                                  <xs:enumeration value="trill"/>
+                                                  <xs:enumeration value="lateral fricative"/>
+                                                  <xs:enumeration value="lateral approximant"/>
+                                                  <xs:enumeration value="lateral flap"/>
+                                                  <xs:enumeration value="ejective"/>
+                                                  <xs:enumeration value="click"/>
+                                                  <xs:enumeration value="implosive"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="voicing">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="voiced"/>
+                                                  <xs:enumeration value="unvoiced"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="assocChar" type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="vowelInv">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="vowel">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="height">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="close"/>
+                                                  <xs:enumeration value="near-close"/>
+                                                  <xs:enumeration value="close-mid"/>
+                                                  <xs:enumeration value="mid"/>
+                                                  <xs:enumeration value="open-mid"/>
+                                                  <xs:enumeration value="near-open"/>
+                                                  <xs:enumeration value="open"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="backness">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="front"/>
+                                                  <xs:enumeration value="near-front"/>
+                                                  <xs:enumeration value="central"/>
+                                                  <xs:enumeration value="near-back"/>
+                                                  <xs:enumeration value="back"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="roundedness">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="rounded"/>
+                                                  <xs:enumeration value="unrounded"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="assocChar" type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="tonality">
+                                <xs:complexType mixed="true">
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0" name="tone">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute default="" name="internalName"
+                                                  type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="toneNumber" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="morphologyWrapper">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element minOccurs="0" name="morphClass">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="analytic"/>
+                                        <xs:enumeration value="isolating"/>
+                                        <xs:enumeration value="synthetic"/>
+                                        <xs:enumeration value="fusional"/>
+                                        <xs:enumeration value="agglutinative"/>
+                                        <xs:enumeration value="polysynthetic"/>
+                                        <xs:enumeration value="oligosynthetic"/>
+                                        <xs:enumeration value="other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="morphAlignment">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="nominative-accusative"/>
+                                        <xs:enumeration value="ergative-absolutive"/>
+                                        <xs:enumeration value="active-stative"/>
+                                        <xs:enumeration value="austronesian"/>
+                                        <xs:enumeration value="direct"/>
+                                        <xs:enumeration value="tripartite"/>
+                                        <xs:enumeration value="transitive"/>
+                                        <xs:enumeration value="other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="syntaxWrapper">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="wordOrder">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="SOV"/>
+                                        <xs:enumeration value="SVO"/>
+                                        <xs:enumeration value="VSO"/>
+                                        <xs:enumeration value="VOS"/>
+                                        <xs:enumeration value="OVS"/>
+                                        <xs:enumeration value="OSV"/>
+                                        <xs:enumeration value="unfixed"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="verbWrapper">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="verbInflection">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            name="conjugatesFor">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="inflectionMethod"
+                                                  type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="verbsInflect">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:boolean"/>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="nounWrapper">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element minOccurs="0" name="nounClasses">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            name="nounClass">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="classMarking" type="xs:string"
+                                                  />
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="classNumber" type="xs:nonNegativeInteger"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="nounDeclension">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            name="declinesFor">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="inflectionMethod"
+                                                  type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute inheritable="false" name="nounsDecline"
+                                        type="xs:boolean"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="pronounDeclension">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            name="declinesFor">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="inflectionMethod"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="pronounsDecline" type="xs:boolean"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
